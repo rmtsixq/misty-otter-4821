@@ -1,4 +1,5 @@
 import java.io.File
+import java.net.URI
 
 plugins {
     alias(libs.plugins.android.application)
@@ -36,7 +37,9 @@ val downloadMediapipeModels = tasks.register("downloadMediapipeModels") {
             logger.lifecycle("Downloading ${dest.name} from $url")
             val partial = File(dest.parentFile, dest.name + ".part")
             partial.delete()
-            java.net.URI(url).toURL().openStream().use { input ->
+            // `java` alone would resolve to the Java plugin extension here,
+            // so the type is imported explicitly at the top of the script.
+            URI(url).toURL().openStream().use { input ->
                 partial.outputStream().use { output -> input.copyTo(output) }
             }
             if (partial.length() < 1_000_000L) {
