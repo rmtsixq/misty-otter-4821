@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Pitch-black window background on purpose: when the blackout overlay is
+      raised, any transient system bar or window edge stays black too.
+    -->
+    <style name="Theme.GozJest" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowBackground">@color/pitch_black</item>
+        <item name="android:statusBarColor">@color/pitch_black</item>
+        <item name="android:navigationBarColor">@color/pitch_black</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorOnPrimary">@color/pitch_black</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+</resources>

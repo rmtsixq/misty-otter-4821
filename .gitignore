@@ -1,0 +1,18 @@
+# Gradle / Android build output
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+.cxx/
+captures/
+.externalNativeBuild/
+
+# MediaPipe model bundles are downloaded by the `downloadMediapipeModels` task
+app-main/src/main/assets/*.task
+app-main/src/main/assets/*.task.part
+
+# Signing material must never be committed
+*.jks
+*.keystore
+keystore.properties

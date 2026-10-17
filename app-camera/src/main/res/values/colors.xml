@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pitch_black">#FF000000</color>
+    <color name="surface_dark">#FF101216</color>
+    <color name="surface_dark_raised">#FF181B21</color>
+    <color name="text_primary">#FFECEFF4</color>
+    <color name="text_secondary">#FF9AA3B2</color>
+    <color name="accent">#FF66D9A6</color>
+    <color name="accent_warn">#FFFFC24B</color>
+    <color name="accent_error">#FFFF6B6B</color>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Göz Jest · Ana Cihaz</string>
+    <string name="settings_title">Ayarlar</string>
+
+    <string name="btn_settings">Ayarlar</string>
+    <string name="btn_capture">Foto çek</string>
+    <string name="btn_ask">Soru sor</string>
+    <string name="btn_clear">Temizle</string>
+
+    <string name="answer_placeholder">Cevap burada görünecek.\n\n• İşaret parmağını GÖZE veya BURUN UCUNA dokundur → diğer telefon arka kamerayla fotoğraf çeker\n• İşaret parmağını DUDAĞA dokundur → biriken fotoğraflar Gemini\'ye gider\n• Gözlerini 5 saniye kapalı tut → ekran tamamen kararır, tekrar 5 saniye kapalı tut → geri gelir</string>
+
+    <string name="permission_needed">Uygulamanın çalışması için kamera izni gerekiyor.</string>
+    <string name="grant_permission">İzin ver</string>
+
+    <string name="hold_label">Ekran kararıyor…</string>
+    <string name="asking">Gemini yanıtlıyor…</string>
+
+    <string name="camera_online">Foto telefonu: BAĞLI</string>
+    <string name="camera_offline">Foto telefonu: BAĞLI DEĞİL</string>
+</resources>

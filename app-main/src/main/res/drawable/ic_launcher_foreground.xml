@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stylised eye: the gesture surface this app watches. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#66D9A6"
+        android:pathData="M54,36c-14,0 -25.6,8.4 -31,18c5.4,9.6 17,18 31,18c14,0 25.6,-8.4 31,-18C79.6,44.4 68,36 54,36zM54,66c-6.6,0 -12,-5.4 -12,-12c0,-6.6 5.4,-12 12,-12c6.6,0 12,5.4 12,12C66,60.6 60.6,66 54,66z" />
+    <path
+        android:fillColor="#ECEFF4"
+        android:pathData="M54,47.5c-3.6,0 -6.5,2.9 -6.5,6.5c0,3.6 2.9,6.5 6.5,6.5c3.6,0 6.5,-2.9 6.5,-6.5C60.5,50.4 57.6,47.5 54,47.5z" />
+</vector>

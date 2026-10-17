@@ -1,0 +1,90 @@
+name: APK derle
+
+on:
+  push:
+    branches:
+      - main
+      - 'claude/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: İki APK'yı derle
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kaynağı al
+        uses: actions/checkout@v4
+
+      - name: JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: gradlew çalıştırılabilir olsun
+        run: chmod +x ./gradlew
+
+      - name: MediaPipe modellerini indir
+        run: ./gradlew :app-main:downloadMediapipeModels --no-daemon
+
+      - name: Derle
+        env:
+          # Optional: add a repository secret named GEMINI_API_KEY and the key
+          # is baked into the main APK, so nothing has to be typed on the phone.
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: ./gradlew :app-main:assembleDebug :app-camera:assembleDebug --no-daemon --stacktrace
+
+      - name: APK'ları yeniden adlandır
+        id: collect
+        run: |
+          mkdir -p dist
+          cp app-main/build/outputs/apk/debug/*.apk   dist/ana-cihaz.apk
+          cp app-camera/build/outputs/apk/debug/*.apk dist/foto-cihazi.apk
+          ls -lh dist
+          {
+            echo "### Derlenen APK'lar"
+            echo ""
+            for f in dist/*.apk; do
+              echo "- \`$(basename "$f")\` — $(du -h "$f" | cut -f1)"
+            done
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Artefakt olarak yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-ikili
+          path: dist/*.apk
+          if-no-files-found: error
+          retention-days: 30
+
+      # A release asset can be downloaded straight from the phone's browser,
+      # unlike a workflow artifact which needs a signed-in session.
+      - name: Telefondan indirilebilir sürüm yayınla
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="apk-$(echo '${{ github.ref_name }}' | tr '/' '-')"
+          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+          gh release create "$TAG" dist/*.apk \
+            --title "APK · ${{ github.ref_name }}" \
+            --notes "Commit ${{ github.sha }} derlemesi. \
+          **ana-cihaz.apk** gösterge/jest telefonuna, \
+          **foto-cihazi.apk** fotoğraf çeken telefona kurulur." \
+            --prerelease

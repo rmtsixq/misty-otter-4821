@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- The API key lives in these preferences; keep it off cloud backups. -->
+    <exclude domain="sharedpref" path="gozjest-main.xml" />
+</full-backup-content>

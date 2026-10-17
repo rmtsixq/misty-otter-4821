@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stylised rear camera: this app only ever takes the photo. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#66D9A6"
+        android:pathData="M72,38l-4.5,-6c-0.9,-1.2 -2.4,-2 -4,-2h-19c-1.6,0 -3.1,0.8 -4,2l-4.5,6h-6c-3.3,0 -6,2.7 -6,6v26c0,3.3 2.7,6 6,6h48c3.3,0 6,-2.7 6,-6v-26c0,-3.3 -2.7,-6 -6,-6h-6zM54,70c-8.3,0 -15,-6.7 -15,-15c0,-8.3 6.7,-15 15,-15c8.3,0 15,6.7 15,15C69,63.3 62.3,70 54,70z" />
+    <path
+        android:fillColor="#ECEFF4"
+        android:pathData="M54,46.5c-4.7,0 -8.5,3.8 -8.5,8.5c0,4.7 3.8,8.5 8.5,8.5c4.7,0 8.5,-3.8 8.5,-8.5C62.5,50.3 58.7,46.5 54,46.5z" />
+</vector>

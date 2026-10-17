@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Göz Jest · Foto Cihazı</string>
+    <string name="settings_title">Ayarlar</string>
+
+    <string name="btn_test">Test çek</string>
+    <string name="btn_dim">Ekranı karart</string>
+    <string name="btn_settings">Ayarlar</string>
+
+    <string name="status_searching">Ana cihaz aranıyor…</string>
+    <string name="status_connected">Ana cihaza BAĞLI</string>
+    <string name="status_disconnected">BAĞLI DEĞİL</string>
+
+    <string name="permission_needed">Uygulamanın çalışması için kamera izni gerekiyor.</string>
+    <string name="dim_hint">Karartma açık.\nÇıkmak için ekrana 3 saniye basılı tutun.</string>
+</resources>
