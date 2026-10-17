@@ -43,6 +43,10 @@ Her `push` sonrası GitHub Actions iki APK'yı derler. İki yol var:
 > isterseniz depoya `SIGNING_STORE_FILE`, `SIGNING_STORE_PASSWORD`,
 > `SIGNING_KEY_ALIAS`, `SIGNING_KEY_PASSWORD` secret'larını ekleyin.
 
+> Ana cihaz APK'sı yalnızca ARM (`arm64-v8a`, `armeabi-v7a`) içerir — yani
+> gerçek telefonlar. x86_64 emülatörde kurulmaz; MediaPipe o mimari için görü
+> kitaplığı yayınlamadığından zaten çalışmazdı.
+
 ### 2. Gemini API anahtarı
 
 İki seçenek:

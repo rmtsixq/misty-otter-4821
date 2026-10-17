@@ -88,6 +88,13 @@ android {
         versionCode = 1
         versionName = "1.0"
         buildConfigField("String", "GEMINI_API_KEY", "\"${buildTimeGeminiKey()}\"")
+
+        ndk {
+            // MediaPipe ships no x86_64 vision library at all, so that ABI
+            // could only ever crash on first inference, and no phone runs x86.
+            // Dropping both takes about 22 MB off the download.
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
+        }
     }
 
     signingConfigs {

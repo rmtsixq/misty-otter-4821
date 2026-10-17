@@ -337,6 +337,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onClientStateChanged(online: Boolean) {
+                    // Anything still queued belongs to a link that is gone;
+                    // replaying it on reconnect would fire a burst of
+                    // captures the user never asked for.
+                    if (!online) server?.clearPending()
                     ui.post { renderConnection() }
                 }
             },
