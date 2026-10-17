@@ -246,11 +246,17 @@ class TouchGestureDetector(@Volatile var tuning: Tuning = Tuning.DEFAULT) {
 
         /*
          * Bands along the face-local vertical axis, where 0.0 is the eye line,
-         * ~0.40 the nose tip, ~0.66 the mouth and 1.0 the chin. They overlap on
-         * purpose; the margin rule resolves anything that lands in the overlap.
+         * ~0.40 the nose tip, ~0.66 the mouth and 1.0 the chin.
+         *
+         * Nose and lips get a deliberate dead zone between them. The gap from
+         * the underside of the nose to the upper lip is only about 0.15 of an
+         * inter-ocular distance — narrower than the touch radius itself — so
+         * distance alone cannot separate the two. A fingertip that lands in
+         * the gap resolves to neither and nothing fires, which is the right
+         * answer for a gesture the user did not actually make.
          */
         val EYE_BAND = -0.30f..0.30f
-        val NOSE_BAND = 0.14f..0.60f
-        val LIPS_BAND = 0.46f..0.95f
+        val NOSE_BAND = 0.16f..0.50f
+        val LIPS_BAND = 0.56f..0.95f
     }
 }

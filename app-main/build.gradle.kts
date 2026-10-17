@@ -152,4 +152,6 @@ dependencies {
     implementation(libs.nanohttpd)
     implementation(libs.okhttp)
     implementation(libs.coroutines.android)
+
+    testImplementation(libs.junit)
 }

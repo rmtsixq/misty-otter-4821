@@ -30,8 +30,22 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Android SDK
-        uses: android-actions/setup-android@v3
+      # The runner image already ships the Android SDK; the setup-android
+      # action only tries to install the long-removed "tools" package and
+      # fails. Just make sure the platform this project compiles against
+      # is present and the licences are accepted.
+      - name: Android SDK paketleri
+        run: |
+          set -euo pipefail
+          SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
+          echo "SDK_ROOT=$SDK_ROOT"
+          SDKMANAGER="$(find "$SDK_ROOT/cmdline-tools" -name sdkmanager -type f | sort | tail -1)"
+          echo "sdkmanager=$SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses > /dev/null 2>&1 || true
+          "$SDKMANAGER" "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+          {
+            echo "sdk.dir=$SDK_ROOT"
+          } > local.properties
 
       - name: Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -41,6 +55,20 @@ jobs:
 
       - name: MediaPipe modellerini indir
         run: ./gradlew :app-main:downloadMediapipeModels --no-daemon
+
+      # Pure-JVM tests over the gesture and eye-hold state machines. They are
+      # the guard on the false-positive behaviour, so a red test blocks the APK.
+      - name: Jest mantığı testleri
+        run: ./gradlew :app-main:testDebugUnitTest --no-daemon
+
+      - name: Test raporunu yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-raporu
+          path: app-main/build/reports/tests/
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Derle
         env:
